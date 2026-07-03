@@ -22,5 +22,7 @@
         {
             return new BaseResponse<T>(false, devErrorMessage, default);
         }
+
+        public static BaseResponse<T> Failure(string errorMessage) => new(false, errorMessage, default);
     }
 }
