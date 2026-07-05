@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce_api.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20260702180222_create_table_user_and_seeeing_data")]
-    partial class create_table_user_and_seeeing_data
+    [Migration("20260704182548_create_user_table")]
+    partial class create_user_table
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,12 @@ namespace E_Commerce_api.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateOnly>("DateOfBith")
+                        .HasColumnType("date");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -81,6 +87,9 @@ namespace E_Commerce_api.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -103,6 +112,8 @@ namespace E_Commerce_api.Migrations
                             Id = "20F75FF1-FBBA-4BFB-A433-93E55620B003",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "20F75FF1-FBBA-4BFB-A433-93E55620B003",
+                            CreatedAt = new DateTime(2026, 7, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DateOfBith = new DateOnly(2000, 1, 1),
                             Email = "hengdavid@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Heng",
@@ -111,6 +122,7 @@ namespace E_Commerce_api.Migrations
                             NormalizedEmail = "HENGDAVID@GMAIL.COM",
                             NormalizedUserName = "HENGDAVID",
                             PasswordHash = "AQAAAAIAAYagAAAAECiqFAsB2eGoSgzfBo+JD0crZT0IFSawL0G1tcczxieS75VdlkE05XIpI7mo3cq+iw==",
+                            PhoneNumber = "012345678",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "9A7164A9-52A6-4EBA-A548-3A0B006EC5BC",
                             TwoFactorEnabled = false,

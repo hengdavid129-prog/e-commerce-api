@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace E_Commerce_api.Migrations
 {
     /// <inheritdoc />
-    public partial class create_table_user_and_seeeing_data : Migration
+    public partial class create_user_table : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,6 +34,9 @@ namespace E_Commerce_api.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfBith = table.Column<DateOnly>(type: "date", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -171,8 +174,8 @@ namespace E_Commerce_api.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "20F75FF1-FBBA-4BFB-A433-93E55620B003", 0, "20F75FF1-FBBA-4BFB-A433-93E55620B003", "hengdavid@gmail.com", true, "Heng", "David", false, null, "HENGDAVID@GMAIL.COM", "HENGDAVID", "AQAAAAIAAYagAAAAECiqFAsB2eGoSgzfBo+JD0crZT0IFSawL0G1tcczxieS75VdlkE05XIpI7mo3cq+iw==", null, false, "9A7164A9-52A6-4EBA-A548-3A0B006EC5BC", false, "hengdavid" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "DateOfBith", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdatedAt", "UserName" },
+                values: new object[] { "20F75FF1-FBBA-4BFB-A433-93E55620B003", 0, "20F75FF1-FBBA-4BFB-A433-93E55620B003", new DateTime(2026, 7, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateOnly(2000, 1, 1), "hengdavid@gmail.com", true, "Heng", "David", false, null, "HENGDAVID@GMAIL.COM", "HENGDAVID", "AQAAAAIAAYagAAAAECiqFAsB2eGoSgzfBo+JD0crZT0IFSawL0G1tcczxieS75VdlkE05XIpI7mo3cq+iw==", "012345678", false, "9A7164A9-52A6-4EBA-A548-3A0B006EC5BC", false, null, "hengdavid" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
