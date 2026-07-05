@@ -4,7 +4,7 @@ namespace E_Commerce_api.Services
 {
     public interface IAuthService
     {
-        Task<BaseResponse<AuthResponseDTO>> Resgister(AuthRequestDTO requestDTO);
+        Task<BaseResponse<UserResponseDTO>> Resgister(UserRequestDTO requestDTO);
         Task<BaseResponse<AuthResponseDTO>> Login(AuthRequestDTO requestDTO);
     }
 }

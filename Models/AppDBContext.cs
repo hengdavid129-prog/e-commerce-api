@@ -39,6 +39,9 @@ namespace E_Commerce_api.Models
                 NormalizedEmail = "HENGDAVID@GMAIL.COM",
                 EmailConfirmed = true,
                 PasswordHash = "AQAAAAIAAYagAAAAECiqFAsB2eGoSgzfBo+JD0crZT0IFSawL0G1tcczxieS75VdlkE05XIpI7mo3cq+iw==",
+                PhoneNumber = "012345678",
+                DateOfBith = new DateOnly(2000, 01, 01),
+                CreatedAt = new DateTime(2026, 7, 5, 0, 0, 0, DateTimeKind.Utc),
                 ConcurrencyStamp = adminUserId,
                 SecurityStamp = "9A7164A9-52A6-4EBA-A548-3A0B006EC5BC",
             };
