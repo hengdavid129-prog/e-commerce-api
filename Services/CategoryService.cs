@@ -8,7 +8,6 @@ namespace E_Commerce_api.Services
     {
         public async Task<BaseResponse<CategoryResponseDTO>> Create(CategoryRequestDTO requestDTO)
         {
-            // DTO = Entity
             var newCate = new Category
             {
                 Name = requestDTO.Name,
@@ -36,7 +35,7 @@ namespace E_Commerce_api.Services
 
         public async Task<BaseResponse<CategoryResponseDTO>> Delete(int id)
         {
-            var category = await _db.Categories.FindAsync(id);
+            var category = await _db.Categories.FirstOrDefaultAsync(cate => cate.Id == id);
             if (category == null)
             {
                 return BaseResponse<CategoryResponseDTO>.Failure("Category not found");
@@ -84,8 +83,10 @@ namespace E_Commerce_api.Services
 
         public async Task<BaseResponse<CategoryResponseDTO>> Update(int id, CategoryRequestDTO requestDTO)
         {
-            var category = await _db.Categories.FindAsync(id);
+            // find by id
+            var category = await _db.Categories.FirstOrDefaultAsync(cate => cate.Id == id);
 
+            // check existing
             if (category == null)
             {
                 return BaseResponse<CategoryResponseDTO>.Failure("Category not found");
@@ -97,8 +98,7 @@ namespace E_Commerce_api.Services
 
             await _db.SaveChangesAsync();
 
-            Console.WriteLine(requestDTO.Name);
-            Console.WriteLine(requestDTO.Description);
+            // to response DTO
             var data = new CategoryResponseDTO
             {
                 Name = category.Name,
