@@ -6,6 +6,7 @@ namespace E_Commerce_api.Models
 {
     public class AppDBContext(DbContextOptions<AppDBContext> options) : IdentityDbContext<AppUser>(options) 
     {
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
