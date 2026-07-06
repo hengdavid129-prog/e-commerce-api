@@ -8,6 +8,7 @@ namespace E_Commerce_api.Services
     {
         public async Task<BaseResponse<CategoryResponseDTO>> Create(CategoryRequestDTO requestDTO)
         {
+            // DTO = Entity
             var newCate = new Category
             {
                 Name = requestDTO.Name,
@@ -47,6 +48,25 @@ namespace E_Commerce_api.Services
             return BaseResponse<CategoryResponseDTO>.Success("Deleted Success");
         }
 
+        public async Task<BaseResponse<CategoryResponseDTO>> FindById(int id)
+        {
+            var category = await _db.Categories.FirstOrDefaultAsync(cate => cate.Id == id);
+
+            if (category == null)
+            {
+                return BaseResponse<CategoryResponseDTO>.Failure("Category not found");
+            }
+
+            var data = new CategoryResponseDTO
+            {
+                Name = category.Name,
+                Description = category.Description,
+                Created_At = category.Created_At
+            };
+
+            return BaseResponse<CategoryResponseDTO>.Success(data);
+        }
+
         public async Task<BaseResponse<List<CategoryResponseDTO>>> Get()
         {
             var categories = await _db.Categories
@@ -62,9 +82,9 @@ namespace E_Commerce_api.Services
         }
 
 
-        public async Task<BaseResponse<CategoryResponseDTO>> Update(CategoryRequestDTO requestDTO)
+        public async Task<BaseResponse<CategoryResponseDTO>> Update(int id, CategoryRequestDTO requestDTO)
         {
-            var category = await _db.Categories.FindAsync(requestDTO.Id);
+            var category = await _db.Categories.FindAsync(id);
 
             if (category == null)
             {
@@ -77,11 +97,14 @@ namespace E_Commerce_api.Services
 
             await _db.SaveChangesAsync();
 
+            Console.WriteLine(requestDTO.Name);
+            Console.WriteLine(requestDTO.Description);
             var data = new CategoryResponseDTO
             {
                 Name = category.Name,
                 Description = category.Description,
-                Created_At = category.Created_At
+                Created_At = category.Created_At,
+                Updated_At = category.Updated_At
             };
 
             return BaseResponse<CategoryResponseDTO>.Success(data);
