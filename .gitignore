@@ -482,3 +482,4 @@ $RECYCLE.BIN/
 *.swp
 
 appsettings.json
+/Migrations/20260703130132_add-category.cs
