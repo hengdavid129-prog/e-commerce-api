@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_api.Models
 {
-    public class AppDBContext(DbContextOptions<AppDBContext> options) : IdentityDbContext<AppUser>(options) 
+    public class AppDBContext(DbContextOptions<AppDBContext> options) : IdentityDbContext<AppUser, AppRole, string>(options) 
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -16,18 +16,20 @@ namespace E_Commerce_api.Models
             string userRoleId = "014C2AAD-B1C0-47B0-9AEF-54FEA8F80E3B";
             string adminUserId = "20F75FF1-FBBA-4BFB-A433-93E55620B003";
 
-            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            builder.Entity<AppRole>().HasData(new AppRole
             {
                 Id = adminRoleId,
                 Name = "Admin",
                 NormalizedName = "ADMIN",
-                ConcurrencyStamp = adminRoleId
-            }, new IdentityRole
+                ConcurrencyStamp = adminRoleId,
+                CreatedAt = new DateTime(2026, 7, 5, 0, 0, 0, DateTimeKind.Utc)
+            }, new AppRole
             {
                 Id = userRoleId,
                 Name = "User",
                 NormalizedName = "USER",
-                ConcurrencyStamp = userRoleId
+                ConcurrencyStamp = userRoleId,
+                CreatedAt = new DateTime(2026, 7, 5, 0, 0, 0, DateTimeKind.Utc)
             });
 
             var adminUser = new AppUser
