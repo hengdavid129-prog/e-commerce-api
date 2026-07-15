@@ -10,7 +10,6 @@ namespace E_Commerce_api.Controllers
     [ApiController]
     public class RoleController(IRoleService _roleService) : ControllerBase
     {
-        // GET: api/<RoleController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -24,7 +23,6 @@ namespace E_Commerce_api.Controllers
             return BadRequest(result);  
         }
 
-        // GET api/<RoleController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
@@ -36,7 +34,6 @@ namespace E_Commerce_api.Controllers
             return BadRequest(result);
         }
 
-        // POST api/<RoleController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RoleRequestDTO requestDTO)
         {
@@ -49,7 +46,6 @@ namespace E_Commerce_api.Controllers
             return BadRequest(result);
         }
 
-        // PUT api/<RoleController>/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(string id, [FromBody] RoleRequestDTO requestDTO)
         {
@@ -61,7 +57,6 @@ namespace E_Commerce_api.Controllers
             return BadRequest(result);
         }
 
-        // DELETE api/<RoleController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
