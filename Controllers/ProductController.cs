@@ -1,6 +1,7 @@
 ﻿using E_Commerce_api.DTO;
 using E_Commerce_api.Services;
 using E_Commerce_api.Utils.QueryParams;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -35,6 +36,7 @@ namespace E_Commerce_api.Controllers
 
         // Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post([FromBody] ProductRequestDTO item)
         {
             var response = await _productService.Create(item);
@@ -46,6 +48,7 @@ namespace E_Commerce_api.Controllers
 
         // Update
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, [FromBody] ProductRequestDTO item)
         {
             var response = await _productService.Update(id, item);
@@ -57,6 +60,7 @@ namespace E_Commerce_api.Controllers
 
         // Delete
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _productService.Delete(id);

@@ -26,6 +26,7 @@ namespace E_Commerce_api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CategoryRequestDTO requestDTO)
         {
             return Ok(await _categoryService.Create(requestDTO));
@@ -33,6 +34,7 @@ namespace E_Commerce_api.Controllers
 
         // /api/category/{id}
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CategoryRequestDTO requestDTO)
         {
             return Ok(await _categoryService.Update(id, requestDTO));
@@ -40,6 +42,7 @@ namespace E_Commerce_api.Controllers
 
         // /api/category/{id}
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             return Ok(await _categoryService.Delete(id));
