@@ -92,6 +92,12 @@ namespace E_Commerce_api.Services
 
             if (result.Succeeded)
             {
+                var roleResult = await _userManager.AddToRoleAsync(newUser, "User");
+                if (!roleResult.Succeeded)
+                {
+                    var roleError = string.Join("\n", roleResult.Errors.Select(e => e.Description));
+                    return BaseResponse<UserResponseDTO>.Failure($"User Created but role assign fail: {roleError}");
+                }
                 var data = new UserResponseDTO
                 {
                     FirstName = newUser.FirstName,
